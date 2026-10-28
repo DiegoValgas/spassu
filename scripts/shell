@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker exec -it starter_app /bin/bash

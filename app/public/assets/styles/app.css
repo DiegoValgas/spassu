@@ -1,0 +1,38 @@
+@import url(https://fonts.bunny.net/css?family=roboto:100,300,400,500,700,900);
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.pagination {
+    --bs-pagination-color: #f8f9fa;
+    --bs-pagination-hover-color: #f8f9fa;
+    --bs-pagination-active-color: rgb(33, 37, 41);
+    --bs-pagination-active-bg: #f8f9fa;
+    --bs-pagination-active-border-color: #f8f9fa;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+}
+
+.loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7); /* preto com transparência */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loading-container .spinner-border {
+    --bs-spinner-width: 5rem;
+    --bs-spinner-height: 5rem;
+    --bs-spinner-border-width: 0.55em;
+}
+
