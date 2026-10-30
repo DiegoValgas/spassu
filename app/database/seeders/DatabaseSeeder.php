@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Author;
+use App\Models\Book;
+use App\Models\Subject;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,6 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        Book::factory()
+            ->hasAttached(Author::factory()->count(mt_rand(1, 4)))
+            ->hasAttached(Subject::factory()->count(mt_rand(1, 4)))
+            ->count(20)
+            ->create();
     }
 }
