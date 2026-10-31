@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# Executa comandos artisan no diretório /var/www/html do container
+# Uso: ./scripts/artisan route:list
+
+CONTAINER="starter_app"
+WORKDIR="/var/www/html"
+
+# Usa TTY apenas quando o terminal for interativo (permite uso em pipes/CI)
+if [ -t 0 ] && [ -t 1 ]; then
+  TTY_FLAGS="-it"
+else
+  TTY_FLAGS="-i"
+fi
+
+docker exec $TTY_FLAGS -w "$WORKDIR" "$CONTAINER" php artisan "$@"
