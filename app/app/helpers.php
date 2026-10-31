@@ -13,7 +13,7 @@ if (!function_exists('assets')) {
         return asset(sprintf(
             'assets/%s?v=%s',
             trim($file, '/'),
-            config('app.version', '0')
+            env('APP_ENV') == 'local' ? mt_rand(0000, 9999) : config('app.version', '0')
         ));
     }
 }
@@ -31,9 +31,9 @@ if (!function_exists('in_route')) {
         if (empty($routeName)) {
             return $currentRouteName;
         } elseif (strpos($routeName, '#') === 0) {
-            return strpos($currentRouteName, substr($routeName, 1) . '.') === 0 ? 'active' : '';
+            return strpos($currentRouteName, substr($routeName, 1) . '.') === 0 ? 'active fw-bold' : '';
         }
 
-        return $currentRouteName === $routeName ? 'active' : '';
+        return $currentRouteName === $routeName ? 'active fw-bold' : '';
     }
 }
