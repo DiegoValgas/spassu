@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookAuthorRequest;
 use App\Http\Requests\BookRequest;
+use App\Http\Requests\BookSubjectRequest;
+use App\Models\Author;
 use App\Models\Book;
+use App\Models\Subject;
 use App\Traits\Response;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
@@ -99,5 +103,85 @@ class BooksController
         session()->flash('success', 'Livro ' . $book->title . ' removido com sucesso.');
 
         return $this->redirect($this->module . 'index');
+    }
+
+    /**
+     * Include author into book.
+     *
+     * @param BookAuthorRequest $request The request data.
+     * @param Book $book The book record.
+     */
+    public function addAuthor(BookAuthorRequest $request, Book $book): JsonResponse
+    {
+        $author = Author::find($request->author_id);
+
+        if (!$author) {
+            return $this->error('Autor inválido.');
+        } elseif ($book->authors()->where('author_id', $author->id)->exists()) {
+            return $this->error('O autor selecionado já pertence a este livro.');
+        }
+
+        $book->authors()->attach($author->id);
+        session()->flash('success', 'Author ' . $author->name . ' adicionado com sucesso.');
+
+        return $this->redirect($this->module . 'edit', $book->id);
+    }
+
+    /**
+     * Remove author from book.
+     *
+     * @param Book $book The book record.
+     * @param Author $author The author record.
+     */
+    public function removeAuthor(Book $book, Author $author)
+    {
+        if (!$book->authors()->where('author_id', $author->id)->exists()) {
+            return $this->error('O autor não pertence a este livro.');
+        }
+
+        $book->authors()->detach($author->id);
+        session()->flash('success', 'Author ' . $author->name . ' removido com sucesso.');
+
+        return $this->redirect($this->module . 'edit', $book->id);
+    }
+
+    /**
+     * Include subject into book.
+     *
+     * @param BookSubjectRequest $request The request data.
+     * @param Book $book The book record.
+     */
+    public function addSubject(BookSubjectRequest $request, Book $book): JsonResponse
+    {
+        $subject = Subject::find($request->subject_id);
+
+        if (!$subject) {
+            return $this->error('Assunto inválido.');
+        } elseif ($book->subjects()->where('subject_id', $subject->id)->exists()) {
+            return $this->error('O assunto selecionado já pertence a este livro.');
+        }
+
+        $book->subjects()->attach($subject->id);
+        session()->flash('success', 'Assunto ' . $subject->description . ' adicionado com sucesso.');
+
+        return $this->redirect($this->module . 'edit', $book->id);
+    }
+
+    /**
+     * Remove subject from book.
+     *
+     * @param Book $book The book record.
+     * @param Subject $subject The subject record.
+     */
+    public function removeSubject(Book $book, Subject $subject)
+    {
+        if (!$book->subjects()->where('subject_id', $subject->id)->exists()) {
+            return $this->error('O assunto não pertence a este livro.');
+        }
+
+        $book->subjects()->detach($subject->id);
+        session()->flash('success', 'Assunto ' . $subject->description . ' removido com sucesso.');
+
+        return $this->redirect($this->module . 'edit', $book->id);
     }
 }
