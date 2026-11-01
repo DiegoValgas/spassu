@@ -20,3 +20,8 @@ Route::resource('authors', AuthorsController::class)->except('show');
  * Subject routes.
  */
 Route::resource('subjects', SubjectsController::class)->except('show');
+
+/**
+ * CSRF token routes.
+ */
+Route::get('/csrf-token', fn () => response()->json(['csrf_token' => csrf_token()]));
