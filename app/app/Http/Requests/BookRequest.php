@@ -26,6 +26,7 @@ class BookRequest extends FormRequest
             'title' => ['required', 'string', 'max:40'],
             'publisher' => ['required', 'string', 'max:40'],
             'edition' => ['required', 'numeric', 'min:0'],
+            'price' => ['required', 'regex:/^(?:\d+|\d{1,3}(?:\.\d{3})+)(?:,\d{1,2})?$/'],
             'publication_year' => ['required', 'numeric', 'digits:4', 'min:1900', 'max:' . (date('Y') + 1)],
         ];
     }
@@ -49,6 +50,9 @@ class BookRequest extends FormRequest
             'edition.required' => 'O campo edição é obrigatório.',
             'edition.numeric' => 'Tipo de dado inválido para o campo edição.',
             'edition.min' => 'O campo edição não pode ser menor que zero.',
+
+            'price.required' => 'O preço é obrigatório.',
+            'price.*' => 'Preço inválido.',
 
             'publication_year.required' => 'O ano de publicação é obrigatório.',
             'publication_year.*' => 'O ano de publicação não é válido.',

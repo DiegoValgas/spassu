@@ -21,6 +21,7 @@ class BookFactory extends Factory
             'title' => rtrim(fake()->text(40), '.'),
             'publisher' => substr(fake()->company(), 0, 40),
             'edition' => mt_rand(1, 6),
+            'price' => mt_rand(10, 100),
             'publication_year' => fake()->date('Y'),
         ];
     }

@@ -54,6 +54,7 @@
 @section('post_scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-maskmoney@3.0.2/dist/jquery.maskMoney.min.js"></script>
     <script type="module">
         import { Form } from '/assets/app/lib/form.js';
 
@@ -179,6 +180,14 @@
                     }
                 }, 10);
             });
+
+            // Price mask
+            $('#price').maskMoney({
+                allowNegative: false,
+                thousands: '.',
+                decimal: ',',
+                affixesStay: true
+            }).maskMoney('mask');
         });
     </script>
 @endsection

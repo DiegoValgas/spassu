@@ -9,15 +9,28 @@
     >
 </div>
 
-<div class="mb-3">
-    <label for="publisher" class="form-label">Editora</label>
-    <input
-        type="text"
-        class="form-control"
-        id="publisher"
-        name="publisher"
-        value="{{ $hasRecord ? $book->publisher : '' }}"
-    >
+<div class="row">
+    <div class="col-xl-6 mb-3">
+        <label for="publisher" class="form-label">Editora</label>
+        <input
+            type="text"
+            class="form-control"
+            id="publisher"
+            name="publisher"
+            value="{{ $hasRecord ? $book->publisher : '' }}"
+        >
+    </div>
+
+    <div class="col-xl-6 mb-3">
+        <label for="price" class="form-label">Preço</label>
+        <input
+            type="text"
+            class="form-control"
+            id="price"
+            name="price"
+            value="{{ $hasRecord ? number_format($book->price, 2, ',', '.') : '' }}"
+        >
+    </div>
 </div>
 
 <div class="row">

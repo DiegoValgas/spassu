@@ -18,7 +18,7 @@ class BooksController
     use Response;
 
     private string $module = 'books.';
-    private array $fillable = ['title', 'publisher', 'edition', 'publication_year'];
+    private array $fillable = ['title', 'publisher', 'edition', 'price', 'publication_year'];
 
     /**
      * Listing books.

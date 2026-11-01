@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title', 40);
             $table->string('publisher', 40);
             $table->unsignedInteger('edition');
+            $table->unsignedInteger('price');
             $table->string('publication_year', 40);
             $table->timestamps();
             $table->softDeletes();

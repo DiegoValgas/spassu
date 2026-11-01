@@ -34,7 +34,7 @@
                         <th scope="col">Editora</th>
                         <th scope="col">Edição</th>
                         <th scope="col">Publicação</th>
-                        <th scope="col">Cadastro</th>
+                        <th scope="col">Preço</th>
                         <th scope="col">&nbsp;</th>
                     </tr>
                 </thead>
@@ -46,7 +46,7 @@
                             <td>{{ $book->publisher }}</td>
                             <td>{{ $book->edition }}</td>
                             <td>{{ $book->publication_year }}</td>
-                            <td>{{ $book->created_at->format('d/m/Y') }}</td>
+                            <td>{{ 'R$ ' . number_format($book->price, 2, ',', '.') }}</td>
                             <td>
                                 <div class="d-flex justify-content-end">
                                     <div class="dropdown">
