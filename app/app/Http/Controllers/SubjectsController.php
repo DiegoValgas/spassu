@@ -21,13 +21,17 @@ class SubjectsController
      *
      * @param Request $request The request data.
      */
-    public function index(Request $request): View
+    public function index(Request $request): View|JsonResponse
     {
         $subjects = Subject::when($request->filled('filter_description'), fn ($query) =>
             $query->where('description', 'like', '%' . $request->filter_description . '%')
         )
         ->orderBy('id', 'desc')
         ->paginate(10);
+
+        if ($request->expectsJson()) {
+            return response()->json($subjects);
+        }
 
         return view($this->module . 'index', compact('subjects'));
     }

@@ -21,13 +21,17 @@ class AuthorsController
      *
      * @param Request $request The request data.
      */
-    public function index(Request $request): View
+    public function index(Request $request): View|JsonResponse
     {
         $authors = Author::when($request->filled('filter_name'), fn ($query) =>
             $query->where('name', 'like', '%' . $request->filter_name . '%')
         )
         ->orderBy('id', 'desc')
         ->paginate(10);
+
+        if ($request->expectsJson()) {
+            return response()->json($authors);
+        }
 
         return view($this->module . 'index', compact('authors'));
     }
