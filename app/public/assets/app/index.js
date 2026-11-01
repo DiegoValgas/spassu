@@ -22,7 +22,7 @@ window.deleteAction = function(event) {
     window.api
         .reset()
         .setMethod('DELETE')
-        .setAction(event.target.href)
+        .setAction(event.currentTarget.href)
         .request()
         .catch(() => window.loading.hide());
 };
