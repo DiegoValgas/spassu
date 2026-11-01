@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Route;
  */
 Route::redirect('/', '/books');
 Route::resource('books', BooksController::class)->except('show');
+Route::put('books/{book}/add-author', [BooksController::class, 'addAuthor'])->name('books.add-author');
+Route::delete('books/{book}/remove-author/{author}', [BooksController::class, 'removeAuthor'])->name('books.remove-author');
+Route::put('books/{book}/add-subject', [BooksController::class, 'addSubject'])->name('books.add-subject');
+Route::delete('books/{book}/remove-subject/{subject}', [BooksController::class, 'removeSubject'])->name('books.remove-subject');
 
 /**
  * Author routes.
