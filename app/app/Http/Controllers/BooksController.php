@@ -49,7 +49,6 @@ class BooksController
      */
     public function store(BookRequest $request): JsonResponse
     {
-        dd($request->all());
         $book = Book::create($request->only($this->fillable));
 
         if (!$book) {

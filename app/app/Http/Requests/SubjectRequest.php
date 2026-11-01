@@ -41,10 +41,10 @@ class SubjectRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'description.required' => 'O assunto é obrigatório.',
-            'description.string' => 'Tipo de dado inválido para o assunto.',
-            'description.max' => 'O assunto não pode ter mais de 20 caracteres.',
-            'description.unique' => 'O assunto informado já está em uso.',
+            'description.required' => 'A descrição é obrigatório.',
+            'description.string' => 'Tipo de dado inválido para a descrição.',
+            'description.max' => 'A descrição não pode ter mais de 20 caracteres.',
+            'description.unique' => 'A descrição informada já está em uso.',
         ];
     }
 }

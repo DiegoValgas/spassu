@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\FullYear;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,7 +26,7 @@ class BookRequest extends FormRequest
             'title' => ['required', 'string', 'max:40'],
             'publisher' => ['required', 'string', 'max:40'],
             'edition' => ['required', 'numeric', 'min:0'],
-            'publication_year' => ['required', 'date_format:Y', new FullYear],
+            'publication_year' => ['required', 'numeric', 'digits:4', 'min:1900', 'max:' . (date('Y') + 1)],
         ];
     }
 
