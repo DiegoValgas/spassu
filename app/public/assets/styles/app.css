@@ -36,3 +36,7 @@ body {
     --bs-spinner-height: 5rem;
     --bs-spinner-border-width: 0.55em;
 }
+
+#alertModal {
+    z-index: 1080 !important;
+}
