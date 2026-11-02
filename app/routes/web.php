@@ -16,6 +16,11 @@ Route::put('books/{book}/add-subject', [BooksController::class, 'addSubject'])->
 Route::delete('books/{book}/remove-subject/{subject}', [BooksController::class, 'removeSubject'])->name('books.remove-subject');
 
 /**
+ * Report route.
+ */
+Route::get('report', [BooksController::class, 'report'])->name('report');
+
+/**
  * Author routes.
  */
 Route::resource('authors', AuthorsController::class)->except('show');

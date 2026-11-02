@@ -15,6 +15,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ in_route('#subjects') }}" href="{{ route('subjects.index') }}">Assuntos</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ in_route('report') }}" href="{{ route('report') }}" target="_blank">Relatório</a>
+                </li>
             </ul>
         </div>
     </div>

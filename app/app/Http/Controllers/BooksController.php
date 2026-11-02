@@ -9,9 +9,12 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\Subject;
 use App\Traits\Response;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Support\Facades\DB;
 
 class BooksController
 {
@@ -36,6 +39,44 @@ class BooksController
         ->paginate(10);
 
         return view($this->module . 'index', compact('books'));
+    }
+
+    /**
+     * Display the report of books, authors and subjects grouped by author.
+     */
+    public function report(): HttpResponse
+    {
+        $rows = DB::table('books_authors_subjects')
+            ->orderBy('author_name')
+            ->orderBy('title')
+            ->orderBy('description')
+            ->get();
+
+        $report = $rows->groupBy('author_id')->map(function ($authorRows) {
+            $first = $authorRows->first();
+
+            return (object) [
+                'id' => $first->author_id,
+                'name' => $first->author_name,
+                'books' => $authorRows->groupBy('book_id')->map(function ($bookRows) {
+                    $book = $bookRows->first();
+
+                    return (object) [
+                        'title' => $book->title,
+                        'publisher' => $book->publisher,
+                        'edition' => $book->edition,
+                        'publication_year' => $book->publication_year,
+                        'price' => $book->price,
+                        'subjects' => $bookRows->pluck('description')->filter()->unique()->values(),
+                    ];
+                })->values(),
+            ];
+        })->values();
+
+        return Pdf::loadView('books.report-pdf', [
+            'report' => $report,
+            'generatedAt' => now(),
+        ])->setPaper('a4', 'landscape')->stream('relatorio-livros-por-autor.pdf');
     }
 
     /**
