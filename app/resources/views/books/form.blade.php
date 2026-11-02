@@ -64,10 +64,12 @@
         // Book form submit action.
         form.onSubmit((event) => {
             event.preventDefault();
+
+            const formData = form.getData();
+
+            formData.set('price', $("#price").maskMoney('unmasked')[0]);
             window.loading.show();
-            form
-                .request(form.getData())
-                .catch(() => window.loading.hide());
+            form.request(formData).catch(() => window.loading.hide());
         });
 
         // Select actions.

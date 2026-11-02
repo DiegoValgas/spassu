@@ -46,7 +46,7 @@
                             <td>{{ $book->publisher }}</td>
                             <td>{{ $book->edition }}</td>
                             <td>{{ $book->publication_year }}</td>
-                            <td>{{ 'R$ ' . number_format($book->price, 2, ',', '.') }}</td>
+                            <td>{{ $book->displayPrice('R$ ') }}</td>
                             <td>
                                 <div class="d-flex justify-content-end">
                                     <div class="dropdown">

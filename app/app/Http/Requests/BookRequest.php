@@ -26,7 +26,7 @@ class BookRequest extends FormRequest
             'title' => ['required', 'string', 'max:40'],
             'publisher' => ['required', 'string', 'max:40'],
             'edition' => ['required', 'numeric', 'min:0'],
-            'price' => ['required', 'regex:/^(?:\d+|\d{1,3}(?:\.\d{3})+)(?:,\d{1,2})?$/'],
+            'price' => ['required', 'numeric', 'min:0'],
             'publication_year' => ['required', 'numeric', 'digits:4', 'min:1900', 'max:' . (date('Y') + 1)],
         ];
     }

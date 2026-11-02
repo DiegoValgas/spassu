@@ -27,16 +27,7 @@ class Book extends Model
     {
         return Attribute::make(
             get: fn ($value) => (float) $value / 100,
-            set: function ($value) {
-                if ($value === null || $value === '') {
-                    return null;
-                }
-
-                $normalized = str_replace('.', '', (string) $value);
-                $normalized = str_replace(',', '.', $normalized);
-
-                return (int) round((float) $normalized * 100);
-            },
+            set: fn ($value) => (int) round((float) $value * 100),
         );
     }
 
@@ -48,5 +39,15 @@ class Book extends Model
     public function subjects()
     {
         return $this->belongsToMany(Subject::class, 'book_subject');
+    }
+
+    /**
+     * Shows formatted book price.
+     *
+     * @param string $prefix The prefix value.
+     */
+    public function displayPrice(string $prefix = '')
+    {
+        return $prefix . number_format((float) $this->price, 2, ',', '.');
     }
 }

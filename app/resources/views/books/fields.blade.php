@@ -28,7 +28,7 @@
             class="form-control"
             id="price"
             name="price"
-            value="{{ $hasRecord ? number_format($book->price, 2, ',', '.') : '' }}"
+            value="{{ $hasRecord ? $book->displayPrice() : '' }}"
         >
     </div>
 </div>
