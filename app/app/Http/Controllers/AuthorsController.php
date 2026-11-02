@@ -14,7 +14,7 @@ class AuthorsController
     use Response;
 
     private string $module = 'authors.';
-    private array $fillable = ['name'];
+    private array $fillable = ['author_name'];
 
     /**
      * Listing authors.
@@ -24,7 +24,7 @@ class AuthorsController
     public function index(Request $request): View|JsonResponse
     {
         $authors = Author::when($request->filled('filter_name'), fn ($query) =>
-            $query->where('name', 'like', '%' . $request->filter_name . '%')
+            $query->where('author_name', 'like', '%' . $request->filter_name . '%')
         )
         ->orderBy('id', 'desc')
         ->paginate(10);
@@ -57,7 +57,7 @@ class AuthorsController
             return $this->error('Erro ao criar autor.');
         }
 
-        session()->flash('success', 'Autor ' . $author->name . ' criado com sucesso.');
+        session()->flash('success', 'Autor ' . $author->author_name . ' criado com sucesso.');
 
         return $this->redirect($this->module . 'edit', $author->id);
     }
@@ -82,7 +82,7 @@ class AuthorsController
             return $this->error('Erro ao atualizar author.');
         }
 
-        session()->flash('success', 'Author ' . $author->name . ' atualizado com sucesso.');
+        session()->flash('success', 'Author ' . $author->author_name . ' atualizado com sucesso.');
 
         return $this->redirect($this->module . 'edit', $author->id);
     }
@@ -98,7 +98,7 @@ class AuthorsController
             return $this->error('Erro ao remover author.');
         }
 
-        session()->flash('success', 'Author ' . $author->name . ' removido com sucesso.');
+        session()->flash('success', 'Author ' . $author->author_name . ' removido com sucesso.');
 
         return $this->redirect($this->module . 'index');
     }

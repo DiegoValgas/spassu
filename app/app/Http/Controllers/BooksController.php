@@ -122,7 +122,7 @@ class BooksController
         }
 
         $book->authors()->attach($author->id);
-        session()->flash('success', 'Author ' . $author->name . ' adicionado com sucesso.');
+        session()->flash('success', 'Author ' . $author->author_name . ' adicionado com sucesso.');
 
         return $this->redirect($this->module . 'edit', $book->id);
     }
@@ -140,7 +140,7 @@ class BooksController
         }
 
         $book->authors()->detach($author->id);
-        session()->flash('success', 'Author ' . $author->name . ' removido com sucesso.');
+        session()->flash('success', 'Author ' . $author->author_name . ' removido com sucesso.');
 
         return $this->redirect($this->module . 'edit', $book->id);
     }

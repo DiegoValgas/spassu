@@ -94,7 +94,7 @@
                             results: data.data.map(function (author) {
                                 return {
                                     id: author.id,
-                                    text: author.name
+                                    text: author.author_name
                                 };
                             })
                         };

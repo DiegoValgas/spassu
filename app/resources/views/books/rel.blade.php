@@ -4,7 +4,7 @@
         @foreach ($book->authors as $author)
             <div class="card border-dark">
                 <div class="card-body d-flex justify-content-between align-items-center py-1">
-                    <p class="m-0">{{ $author->name }}</p>
+                    <p class="m-0">{{ $author->author_name }}</p>
                     <a
                         href="{{ route('books.remove-author', [$book->id, $author->id]) }}"
                         class="text-danger"

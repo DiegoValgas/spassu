@@ -24,7 +24,7 @@ class AuthorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => [
+            'author_name' => [
                 'required',
                 'string',
                 'max:40',
@@ -41,10 +41,10 @@ class AuthorRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'O nome é obrigatório.',
-            'name.string' => 'Tipo de dado inválido para nome.',
-            'name.max' => 'O nome não pode ter mais de 40 caracteres.',
-            'name.unique' => 'O nome informado já está em uso.',
+            'author_name.required' => 'O nome é obrigatório.',
+            'author_name.string' => 'Tipo de dado inválido para nome.',
+            'author_name.max' => 'O nome não pode ter mais de 40 caracteres.',
+            'author_name.unique' => 'O nome informado já está em uso.',
         ];
     }
 }

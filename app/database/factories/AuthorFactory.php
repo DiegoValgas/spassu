@@ -17,6 +17,6 @@ class AuthorFactory extends Factory
      */
     public function definition(): array
     {
-        return ['name' => substr(fake()->name(), 0, 40)];
+        return ['author_name' => substr(fake()->name(), 0, 40)];
     }
 }

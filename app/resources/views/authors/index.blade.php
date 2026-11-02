@@ -34,7 +34,7 @@
                     @foreach ($authors as $author)
                         <tr>
                             <th scope="row">{{ $author->id }}</th>
-                            <td>{{ $author->name }}</td>
+                            <td>{{ $author->author_name }}</td>
                             <td>{{ $author->created_at->format('d/m/Y') }}</td>
                             <td>
                                 <div class="d-flex justify-content-end">

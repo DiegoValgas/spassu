@@ -25,13 +25,13 @@
 
                 <div class="row pt-3">
                     <div class="col-md-12 mb-3">
-                        <label for="name" class="form-label">Nome</label>
+                        <label for="author_name" class="form-label">Nome</label>
                         <input
                             type="text"
                             class="form-control"
-                            id="name"
-                            name="name"
-                            value="{{ $hasRecord ? $author->name : '' }}"
+                            id="author_name"
+                            name="author_name"
+                            value="{{ $hasRecord ? $author->author_name : '' }}"
                         >
                     </div>
                 </div>

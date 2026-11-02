@@ -11,7 +11,7 @@ class Author extends Model
     use SoftDeletes;
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['author_name'];
 
     public function books()
     {
