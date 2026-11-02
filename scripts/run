@@ -13,4 +13,4 @@ else
   TTY_FLAGS="-i"
 fi
 
-docker exec $TTY_FLAGS -w "$WORKDIR" "$CONTAINER" php artisan "$@"
+docker exec $TTY_FLAGS -w "$WORKDIR" "$CONTAINER" "$@"
